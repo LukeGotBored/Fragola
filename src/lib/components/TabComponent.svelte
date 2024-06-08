@@ -7,12 +7,13 @@
     import Home from '$lib/pages/Home.svelte';
     import Test from '$lib/pages/Library.svelte';
     import Crash from '$lib/pages/Crash.svelte';
+    import Library from '$lib/pages/Library.svelte';
 
     let activeTab = { id: -1, label: "Error", icon: "􀎞", component: Crash };
     let tabs = [
-        { id: 1, label: "Home", icon: "􀒽", component: Home },
-        { id: 2, label: "Library", icon: "􀏭", component: Test },
-        { id: 3, label: "Debug", icon: "􀍟", component: Crash}
+        { id: 1, label: "Home", icon: "􀒽", closeable: false, component: Home },
+        { id: 2, label: "Library", icon: "􀏭", closeable: true, component: Library },
+        { id: 3, label: "Debug", icon: "􀍟", closeable: true, component: Crash }
     ];
 
     let history = [];
@@ -49,6 +50,7 @@
     function closeTab(tab) {
         const index = tabs.findIndex(t => t.id === tab.id); // Find the index of the tab to close
         if (index === -1) return; // If the tab to close is not found, do nothing
+        if (!tab.closeable) return; // If the tab is not closeable, do nothing
 
         if (tabs.length > 1) tabs.splice(index, 1); // Remove the tab from the array
 
@@ -105,9 +107,12 @@
                 <div class="icon">{tab.icon}</div>
                 {tab.label}
                 
+                {#if tabs[index].closeable}
                 <button class="close-button" on:click|stopPropagation={() => closeTab(tab)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
+                {/if}
+
             </button>
         {/each} 
 
@@ -157,7 +162,7 @@
         min-width: 10rem;
         gap: 0.5rem;
         border: none;
-        border-bottom: 2px solid transparent;
+        border-bottom: 2px inset transparent;
         background-color: rgba(0, 0, 0, 0);
         color: white;
         font-size: 1rem;
@@ -169,6 +174,7 @@
         text-wrap: nowrap;
         overflow: hidden;
         transition: width 0.2s ease-in-out, border-bottom 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        
     }
 
     .tab:hover {
@@ -177,7 +183,7 @@
 
     .tab[data-active="true"] {
         background-color: rgba(0, 0, 0, 0.4);
-        border-bottom: 2px solid var(--accent-color);
+        border-bottom: 2px inset var(--accent-color);
     }
 
     .tab[data-active="true"]:hover {
