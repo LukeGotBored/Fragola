@@ -3,11 +3,9 @@
 
 # Fragola Player
 
-Fragola (Strawberry in italian) is a straightforward and lightweight music player designed to enhance your music listening experience.
+Fragola (Strawberry in italian) is a straightforward and lightweight music player with no bs.
 
 With Fragola, managing your music library, creating playlists, and controlling playback is a breeze. Whether you want to play, pause, skip tracks, or adjust the volume, Fragola makes it easy and enjoyable.
-
-
 
 ## Features
 (Work in progress)
@@ -18,7 +16,7 @@ With Fragola, managing your music library, creating playlists, and controlling p
 - [ ] Enable shuffle and repeat modes
 - [ ] Search and filter music library
 - [ ] Customize the app's appearance and settings
-- [ ] Support for multiple audio formats (e.g., MP3, FLAC, WAV)
+- [ ] Support for multiple audio formats (e.g. MP3, FLAC, WAV)
 - [ ] Cross-platform compatibility (Windows, macOS, Linux)
 - [ ] Tag, manage and edit metadata of music files
 - [ ] Support for audio streaming (e.g. Youtube, Soundcloud)
